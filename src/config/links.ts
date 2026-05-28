@@ -8,7 +8,8 @@ export const CALENDLY_URL = CONTACT_MAILTO;
 export const FORTALEZA_URL = 'https://fortaleza.digital';
 export const FORTALEZA_SIGNUP = 'https://fortaleza.digital/register';
 export const FORTALEZA_PRICING = 'https://fortaleza.digital/#pricing';
-export const FORTALEZA_DOCS = 'https://github.com/marturojt/fortaleza';
+// TODO: Update with official Fortaleza docs URL when available
+export const FORTALEZA_DOCS = 'https://fortaleza.digital';
 
-// TODO: Update to official firm GitHub handle when available
-export const GITHUB_URL = 'https://github.com/marturojt';
+// TODO: Update with official firm GitHub handle when available
+export const GITHUB_URL = 'https://harden.tools';

@@ -42,7 +42,7 @@ All URLs pointing outside this site live in `src/config/links.ts`. This is the s
 ### Key relationships
 
 - **Harden.Tools** = the engineering firm (this site)
-- **Fortaleza** = a separate SaaS product at `https://fortaleza.digital` (repo: `marturojt/fortaleza`). The `/fortaleza` page here is a marketing showcase only — it links externally and does **not** duplicate the product's pricing or functionality.
+- **Fortaleza** = a separate SaaS product at `https://fortaleza.digital` (repo: `fortaleza.digital`). The `/fortaleza` page here is a marketing showcase only — it links externally and does **not** duplicate the product's pricing or functionality.
 
 ### Adding a new page
 
