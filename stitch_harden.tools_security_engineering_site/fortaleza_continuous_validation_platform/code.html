@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fortaleza | Harden.Tools</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#ffb95f",
+                    "on-secondary": "#472a00",
+                    "secondary": "#ffb95f",
+                    "primary-fixed-dim": "#4de082",
+                    "surface-tint": "#4de082",
+                    "primary-container": "#4ade80",
+                    "on-tertiary-fixed-variant": "#6c3a0f",
+                    "on-secondary-fixed": "#2a1700",
+                    "on-tertiary-fixed": "#301400",
+                    "outline-variant": "#3d4a3e",
+                    "surface-container-highest": "#353534",
+                    "inverse-on-surface": "#313030",
+                    "surface-variant": "#353534",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "on-primary-container": "#005e2d",
+                    "on-background": "#e5e2e1",
+                    "on-error": "#690005",
+                    "tertiary-fixed": "#ffdcc6",
+                    "surface-container-lowest": "#0e0e0e",
+                    "background": "#131313",
+                    "primary-fixed": "#6dfe9c",
+                    "inverse-surface": "#e5e2e1",
+                    "on-surface": "#e5e2e1",
+                    "tertiary-fixed-dim": "#ffb784",
+                    "surface-container-low": "#1c1b1b",
+                    "on-primary-fixed": "#00210c",
+                    "surface-container-high": "#2a2a2a",
+                    "error": "#ffb4ab",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-container": "#5b3800",
+                    "tertiary-container": "#ffb47f",
+                    "on-primary-fixed-variant": "#005227",
+                    "primary": "#6bfb9a",
+                    "on-surface-variant": "#bccabb",
+                    "on-tertiary-container": "#794418",
+                    "error-container": "#93000a",
+                    "inverse-primary": "#006d36",
+                    "surface-container": "#201f1f",
+                    "tertiary": "#ffd9c1",
+                    "surface-bright": "#3a3939",
+                    "on-primary": "#003919",
+                    "outline": "#869486",
+                    "surface-dim": "#131313",
+                    "surface": "#131313",
+                    "secondary-container": "#ee9800",
+                    "secondary-fixed": "#ffddb8",
+                    "on-tertiary": "#4f2500"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit-2": "0.5rem",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "base": "4px",
+                    "unit-8": "2rem",
+                    "max-width": "1440px",
+                    "unit-1": "0.25rem",
+                    "unit-4": "1rem"
+            },
+            "fontFamily": {
+                    "mono-label": ["JetBrains Mono"],
+                    "headline-md": ["Geist"],
+                    "mono-code": ["JetBrains Mono"],
+                    "body-lg": ["Geist"],
+                    "body-md": ["Geist"],
+                    "headline-sm": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "headline-lg-mobile": ["Geist"]
+            },
+            "fontSize": {
+                    "mono-label": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "mono-code": ["14px", {"lineHeight": "1.7", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["15px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .grid-blueprint {
+            background-image: radial-gradient(#262626 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background-color: rgba(26, 26, 26, 0.7);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0A0A0A; }
+        ::-webkit-scrollbar-thumb { background: #262626; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-unit-4 max-w-max-width mx-auto bg-background border-b border-outline-variant">
+<div class="font-mono-label text-body-lg font-bold tracking-tighter text-primary">Harden.Tools</div>
+<div class="hidden md:flex gap-unit-8 items-center">
+<a class="text-on-surface-variant font-mono-label hover:text-primary transition-colors duration-200" href="#">Services</a>
+<a class="text-on-surface-variant font-mono-label hover:text-primary transition-colors duration-200" href="#">Philosophy</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-mono-label hover:text-primary transition-colors duration-200" href="#">Fortaleza</a>
+</div>
+<button class="bg-primary text-on-primary px-unit-4 py-unit-2 font-mono-label font-bold text-mono-label hover:opacity-80 transition-opacity">Get Started</button>
+</nav>
+<main class="pt-24 min-h-screen">
+<!-- Product Hero -->
+<section class="px-margin-desktop py-unit-8 grid-blueprint border-b border-outline-variant">
+<div class="max-w-max-width mx-auto flex flex-col md:flex-row items-center gap-unit-8">
+<div class="flex-1 space-y-unit-4">
+<div class="inline-flex items-center gap-unit-2 px-unit-2 py-unit-1 bg-surface-container border border-outline-variant">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="font-mono-label text-primary">VERSION 4.2.0-STABLE</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary tracking-tighter uppercase">Fortaleza</h1>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant max-w-xl">Continuous Attack Surface Validation. Infrastructure-native scanning for the modern operator.</p>
+<div class="flex gap-unit-4 pt-unit-4">
+<button class="bg-primary text-on-primary px-unit-8 py-unit-4 font-mono-label font-bold rounded-none hover:opacity-90 transition-all">PROVISION INSTANCE</button>
+<button class="border border-outline-variant px-unit-8 py-unit-4 font-mono-label text-on-surface hover:bg-surface-container transition-all">DOCUMENTATION</button>
+</div>
+</div>
+<div class="flex-1 w-full border border-outline-variant bg-surface-container-lowest p-unit-4 shadow-2xl">
+<div class="flex items-center justify-between mb-unit-4 border-b border-outline-variant pb-unit-2">
+<span class="font-mono-label text-on-surface-variant">fortaleza@root: ~ /validation-stream</span>
+<div class="flex gap-unit-1">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+</div>
+</div>
+<div class="font-mono-code text-mono-code text-on-surface-variant leading-relaxed">
+<div class="text-primary">[INIT] Initializing Fortaleza Validator...</div>
+<div>[SCAN] Crawling AS20473... Found 142 endpoints.</div>
+<div>[AUTH] Authenticated via mTLS. Handshake: TLS_AES_256_GCM_SHA384</div>
+<div class="text-secondary">[WARN] Found Weak Cipher on api.prd.v4: SHA-1 detected.</div>
+<div class="text-primary">[SEC] SPF/DKIM validation passing for harden.tools</div>
+<div class="animate-pulse">_</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Dashboard Visualization -->
+<section class="px-margin-desktop py-unit-8 bg-surface-container-lowest border-b border-outline-variant">
+<div class="max-w-max-width mx-auto">
+<div class="flex items-end justify-between mb-unit-8">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase tracking-tight">Observability Dashboard</h2>
+<p class="font-body-md text-on-surface-variant">Real-time exposure metrics and infrastructure health clusters.</p>
+</div>
+<div class="hidden md:flex gap-unit-2">
+<span class="px-unit-2 py-unit-1 bg-surface-container border border-outline-variant text-on-surface-variant font-mono-label">LAST 24H</span>
+<span class="px-unit-2 py-unit-1 bg-surface-container border border-outline-variant text-primary font-mono-label">LIVE FEED</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-unit-4">
+<!-- Risk Score Meter -->
+<div class="md:col-span-4 border border-outline-variant p-unit-6 bg-surface-container flex flex-col justify-center items-center relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 grid-blueprint"></div>
+<div class="relative z-10 text-center">
+<h3 class="font-mono-label text-on-surface-variant mb-unit-4">GLOBAL RISK SCORE</h3>
+<div class="text-6xl font-display-lg text-primary">842</div>
+<div class="mt-unit-4 flex items-center gap-unit-2">
+<span class="material-symbols-outlined text-primary">stat_1</span>
+<span class="font-mono-label text-primary">+12.4% SECURE</span>
+</div>
+</div>
+<div class="w-full mt-unit-8 h-2 bg-background border border-outline-variant overflow-hidden">
+<div class="h-full bg-primary w-[84%]"></div>
+</div>
+</div>
+<!-- Exposure Map -->
+<div class="md:col-span-8 border border-outline-variant p-unit-6 bg-surface-container min-h-[300px] flex flex-col">
+<div class="flex justify-between items-center mb-unit-4">
+<h3 class="font-mono-label text-on-surface">TOPOLOGY EXPOSURE MAP</h3>
+<span class="text-on-surface-variant font-mono-code text-[10px]">REGION: GLOBAL-ANYCAST</span>
+</div>
+<div class="flex-1 relative flex items-center justify-center">
+<div class="w-full h-full flex items-center justify-center bg-background/50 border border-outline-variant/30">
+<!-- Asymmetric graph representation -->
+<div class="relative w-full h-full p-unit-4 overflow-hidden">
+<div class="absolute top-1/2 left-1/4 w-3 h-3 bg-primary rounded-full shadow-[0_0_15px_#4ade80]"></div>
+<div class="absolute top-1/3 left-1/2 w-4 h-4 bg-secondary rounded-full shadow-[0_0_15px_#f59e0b]"></div>
+<div class="absolute bottom-1/4 right-1/3 w-2 h-2 bg-error rounded-full shadow-[0_0_15px_#ef4444]"></div>
+<svg class="w-full h-full opacity-20" viewbox="0 0 400 200">
+<path d="M50,100 L200,50 L350,150 M200,50 L300,100" fill="none" stroke="white" stroke-width="1"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-mono-label text-on-surface-variant pointer-events-none opacity-50">NODE_CLUSTER_Z-01</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Metrics Grid -->
+<div class="md:col-span-3 border border-outline-variant p-unit-4 bg-surface-container">
+<h4 class="font-mono-label text-on-surface-variant text-[11px] mb-unit-2">SSL/TLS HEALTH</h4>
+<div class="text-headline-sm font-headline-sm text-primary">99.2%</div>
+<div class="text-[10px] font-mono-code text-on-surface-variant">82 Valid / 1 Warning</div>
+</div>
+<div class="md:col-span-3 border border-outline-variant p-unit-4 bg-surface-container">
+<h4 class="font-mono-label text-on-surface-variant text-[11px] mb-unit-2">EMAIL HYGIENE</h4>
+<div class="text-headline-sm font-headline-sm text-primary">SECURE</div>
+<div class="text-[10px] font-mono-code text-on-surface-variant">SPF: PASS | DMARC: REJECT</div>
+</div>
+<div class="md:col-span-3 border border-outline-variant p-unit-4 bg-surface-container border-secondary/30">
+<h4 class="font-mono-label text-secondary text-[11px] mb-unit-2">CVE QUEUE</h4>
+<div class="text-headline-sm font-headline-sm text-secondary">03</div>
+<div class="text-[10px] font-mono-code text-on-surface-variant">CRITICAL: 0 | HIGH: 3</div>
+</div>
+<div class="md:col-span-3 border border-outline-variant p-unit-4 bg-surface-container">
+<h4 class="font-mono-label text-on-surface-variant text-[11px] mb-unit-2">UPTIME (P99)</h4>
+<div class="text-headline-sm font-headline-sm text-on-surface">99.998%</div>
+<div class="text-[10px] font-mono-code text-on-surface-variant">GLOBAL RESOLVE: 12ms</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Feature Showcase -->
+<section class="px-margin-desktop py-unit-8 bg-background">
+<div class="max-w-max-width mx-auto space-y-24">
+<!-- SSL/TLS & Email -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-unit-8">
+<div class="space-y-unit-4">
+<h2 class="font-headline-md text-headline-md text-primary tracking-tighter uppercase">01. Cryptographic Validation</h2>
+<p class="text-on-surface-variant text-body-lg">Full-stack SSL/TLS analysis including cipher suite hardening verification, certificate chain transparency, and automated expiry rotation checks.</p>
+<ul class="space-y-unit-2 font-mono-label text-on-surface">
+<li class="flex items-center gap-unit-2"><span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span> Perfect Forward Secrecy Audit</li>
+<li class="flex items-center gap-unit-2"><span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span> HSTS Configuration Check</li>
+<li class="flex items-center gap-unit-2"><span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span> OCSP Stapling Verification</li>
+</ul>
+</div>
+<div class="bg-surface-container border border-outline-variant p-unit-4 font-mono-code text-mono-code">
+<div class="flex items-center gap-unit-2 mb-unit-4">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-on-surface-variant">REPORT: HTTPS://API.HARDEN.TOOLS</span>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between border-b border-outline-variant/30 py-1">
+<span class="text-on-surface-variant">Protocol</span>
+<span class="text-primary font-bold">TLS 1.3</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 py-1">
+<span class="text-on-surface-variant">Cipher</span>
+<span class="text-on-surface">ChaCha20-Poly1305</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 py-1">
+<span class="text-on-surface-variant">Expiry</span>
+<span class="text-on-surface">82 Days Remaining</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 py-1">
+<span class="text-on-surface-variant">DMARC</span>
+<span class="text-primary">v=DMARC1; p=reject;</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Kanban & AI Snippets -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-unit-8 items-start">
+<div class="md:col-span-7 border border-outline-variant bg-surface-container p-unit-6 overflow-x-auto">
+<h3 class="font-mono-label text-on-surface mb-unit-6">VULNERABILITY LIFECYCLE (KANBAN)</h3>
+<div class="flex gap-unit-4 min-w-[600px]">
+<!-- To Do -->
+<div class="flex-1 space-y-unit-4">
+<div class="flex items-center justify-between border-b border-outline-variant pb-unit-2">
+<span class="font-mono-label text-on-surface-variant text-xs">BACKLOG</span>
+<span class="text-[10px] px-1 bg-outline-variant text-on-surface">4</span>
+</div>
+<div class="p-unit-3 bg-background border-l-2 border-error space-y-unit-1">
+<div class="text-xs font-bold text-error">CRITICAL</div>
+<div class="text-sm">Exposed SSH Port</div>
+<div class="text-[10px] text-on-surface-variant font-mono-code">ID: CVE-2024-001</div>
+</div>
+<div class="p-unit-3 bg-background border-l-2 border-secondary space-y-unit-1">
+<div class="text-xs font-bold text-secondary">HIGH</div>
+<div class="text-sm">CORS Policy Gap</div>
+<div class="text-[10px] text-on-surface-variant font-mono-code">ID: CVE-2024-002</div>
+</div>
+</div>
+<!-- In Progress -->
+<div class="flex-1 space-y-unit-4">
+<div class="flex items-center justify-between border-b border-outline-variant pb-unit-2">
+<span class="font-mono-label text-on-surface-variant text-xs">REMEDIATING</span>
+<span class="text-[10px] px-1 bg-outline-variant text-on-surface">1</span>
+</div>
+<div class="p-unit-3 bg-background border-l-2 border-primary space-y-unit-1">
+<div class="text-xs font-bold text-primary">INFO</div>
+<div class="text-sm">Subdomain Scan</div>
+<div class="text-[10px] text-on-surface-variant font-mono-code">ID: INTEL-004</div>
+</div>
+</div>
+<!-- Done -->
+<div class="flex-1 space-y-unit-4 opacity-40">
+<div class="flex items-center justify-between border-b border-outline-variant pb-unit-2">
+<span class="font-mono-label text-on-surface-variant text-xs">VERIFIED</span>
+<span class="text-[10px] px-1 bg-outline-variant text-on-surface">12</span>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-5 space-y-unit-6">
+<div class="space-y-unit-4">
+<h2 class="font-headline-md text-headline-md text-primary tracking-tighter uppercase">02. Automated Remediation</h2>
+<p class="text-on-surface-variant text-body-md">Fortaleza generates context-aware CLI snippets to patch detected exposures instantly using your specific infrastructure provider tools.</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-unit-4 relative group">
+<div class="absolute top-4 right-4 text-on-surface-variant hover:text-primary cursor-pointer">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+</div>
+<div class="font-mono-code text-mono-code text-primary mb-unit-4 flex items-center gap-unit-2">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+                                AI-PATCH-SUGGESTION
+                            </div>
+<code class="block text-on-surface space-y-1">
+<span class="text-on-surface-variant"># Patching SSH exposure (AWS)</span><br/>
+<span class="text-secondary">aws</span> ec2 revoke-security-group-ingress \<br/>
+                                  --group-id sg-0492e \<br/>
+                                  --protocol tcp \<br/>
+                                  --port 22 \<br/>
+                                  --cidr 0.0.0.0/0
+                            </code>
+</div>
+</div>
+</div>
+<!-- Attack Surface Map -->
+<div class="border border-outline-variant bg-surface-container overflow-hidden">
+<div class="px-unit-6 py-unit-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-high">
+<div class="flex items-center gap-unit-2">
+<span class="material-symbols-outlined text-primary">hub</span>
+<span class="font-mono-label text-on-surface">INFRASTRUCTURE EXPOSURE MAP (NODE_Z)</span>
+</div>
+<span class="font-mono-code text-[10px] text-on-surface-variant">SYSTEMS: 1,402 DETECTED</span>
+</div>
+<div class="h-[400px] relative w-full bg-[#050505] p-unit-8">
+<div class="absolute inset-0 opacity-5 grid-blueprint"></div>
+<!-- Simulated Map Grid -->
+<div class="w-full h-full flex flex-wrap gap-unit-1 items-start justify-center overflow-hidden">
+<!-- Generation of many small technical boxes to represent nodes -->
+<div class="grid grid-cols-12 md:grid-cols-24 gap-1 w-full opacity-40">
+<script>
+                                    for(let i=0; i<300; i++) {
+                                        const color = Math.random() > 0.95 ? (Math.random() > 0.5 ? 'bg-secondary' : 'bg-error') : 'bg-primary/20';
+                                        document.write(`<div class="w-2 h-2 ${color} border border-white/5"></div>`);
+                                    }
+                                </script>
+</div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="text-center">
+<div class="font-mono-label text-primary text-xl mb-unit-2">SCANNING: AS-882-PRD</div>
+<div class="h-1 w-64 bg-surface-container border border-outline-variant overflow-hidden">
+<div class="h-full bg-primary w-1/3 animate-[progress_3s_infinite_linear]"></div>
+</div>
+<style>@keyframes progress { 0% { transform: translateX(-100%); } 100% { transform: translateX(300%); } }</style>
+</div>
+</div>
+</div>
+<!-- Tooltip Callout -->
+<div class="absolute bottom-10 left-10 p-unit-3 bg-surface-container border border-outline-variant shadow-lg glass-panel">
+<div class="font-mono-label text-primary text-xs mb-unit-1">NODE DETECTED</div>
+<div class="font-mono-code text-[10px] text-on-surface-variant">IP: 192.168.1.104</div>
+<div class="font-mono-code text-[10px] text-on-surface-variant">PORTS: [80, 443, 22]</div>
+<div class="font-mono-code text-[10px] text-error">VULN: SSH_VER_EXPIRED</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="px-margin-desktop py-unit-8 border-t border-outline-variant">
+<div class="max-w-max-width mx-auto flex flex-col items-center text-center space-y-unit-6">
+<h2 class="font-display-lg text-headline-md md:text-display-lg text-on-surface tracking-tighter uppercase">Secure Your perimeter.</h2>
+<p class="font-body-lg text-on-surface-variant max-w-2xl">Stop guessing your attack surface. Fortaleza provides the ground-truth observability needed for modern compliance and security standards.</p>
+<div class="flex flex-col md:flex-row gap-unit-4 w-full md:w-auto">
+<button class="bg-primary text-on-primary px-unit-12 py-unit-4 font-mono-label font-bold text-lg rounded-none hover:bg-primary-container transition-all">START FREE SCAN</button>
+<button class="border border-outline-variant text-on-surface px-unit-12 py-unit-4 font-mono-label text-lg rounded-none hover:bg-surface-container transition-all">TALK TO AN OPERATOR</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-unit-8 flex flex-col md:flex-row justify-between items-center gap-unit-4 bg-surface-container-lowest border-t border-outline-variant">
+<div class="flex flex-col gap-unit-1">
+<div class="font-mono-label text-body-md text-on-surface">Harden.Tools</div>
+<div class="font-body-md text-body-md text-on-surface-variant">© 2024 Harden.Tools — Built for Operators</div>
+</div>
+<div class="flex gap-unit-6 flex-wrap justify-center">
+<a class="text-primary font-mono-code text-mono-code hover:text-primary transition-colors" href="#">Status: [SYSTEMS OPERATIONAL]</a>
+<a class="text-on-surface-variant font-mono-code text-mono-code hover:text-primary transition-colors" href="#">Sitemap</a>
+<a class="text-on-surface-variant font-mono-code text-mono-code hover:text-primary transition-colors" href="#">Security.txt</a>
+<a class="text-on-surface-variant font-mono-code text-mono-code hover:text-primary transition-colors" href="#">Engineering</a>
+</div>
+</footer>
+</body></html>

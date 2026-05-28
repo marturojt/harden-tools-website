@@ -1,0 +1,38 @@
+---
+import type { Locale } from '../i18n/utils';
+import { t } from '../i18n/utils';
+import SectionLabel from './SectionLabel.astro';
+import esData from '../i18n/es.json';
+import enData from '../i18n/en.json';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const data = locale === 'es' ? esData : enData;
+const items = data.home.philosophy.items;
+---
+
+<section class="py-16 px-margin-mobile md:px-margin-desktop border-t border-outline-variant bg-surface-container-lowest">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-unit-8 items-start max-w-max-width mx-auto">
+    <div class="md:col-span-4 md:sticky md:top-32">
+      <SectionLabel text={t(locale, 'home.philosophy.label')} />
+      <h2 class="font-headline-md text-headline-md mb-unit-4">{t(locale, 'home.philosophy.title')}</h2>
+      <p class="font-body-md text-on-surface-variant">{t(locale, 'home.philosophy.description')}</p>
+    </div>
+
+    <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-px bg-outline-variant border border-outline-variant">
+      {
+        items.map((item) => (
+          <div class="bg-background p-unit-8 hover:bg-surface-container-low transition-colors group">
+            <div class="font-mono-code text-primary mb-unit-4">{item.num}</div>
+            <h3 class="font-headline-sm text-headline-sm mb-unit-2">{item.title}</h3>
+            <p class="font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">
+              {item.desc}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

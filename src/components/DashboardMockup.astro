@@ -1,0 +1,89 @@
+---
+import type { Locale } from '../i18n/utils';
+import { t } from '../i18n/utils';
+import SectionLabel from './SectionLabel.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+---
+
+<section class="px-margin-mobile md:px-margin-desktop py-16 bg-surface-container-lowest border-b border-outline-variant">
+  <div class="max-w-max-width mx-auto">
+    <div class="flex items-end justify-between mb-unit-8">
+      <div>
+        <SectionLabel text={t(locale, 'fortaleza.dashboard.label')} />
+        <h2 class="font-headline-md text-headline-md text-on-surface uppercase tracking-tight">
+          {t(locale, 'fortaleza.dashboard.title')}
+        </h2>
+        <p class="font-body-md text-on-surface-variant">{t(locale, 'fortaleza.dashboard.subtitle')}</p>
+      </div>
+      <div class="hidden md:flex gap-unit-2">
+        <span class="px-unit-2 py-unit-1 bg-surface-container border border-outline-variant text-on-surface-variant font-mono-label text-xs">
+          {t(locale, 'fortaleza.dashboard.period_24h')}
+        </span>
+        <span class="px-unit-2 py-unit-1 bg-surface-container border border-outline-variant text-primary font-mono-label text-xs animate-pulse">
+          {t(locale, 'fortaleza.dashboard.period_live')}
+        </span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-unit-4">
+      <!-- Risk Score -->
+      <div class="md:col-span-4 border border-outline-variant p-unit-6 bg-surface-container flex flex-col justify-center items-center relative overflow-hidden min-h-[200px]">
+        <div class="absolute inset-0 opacity-10 grid-blueprint"></div>
+        <div class="relative z-10 text-center">
+          <h3 class="font-mono-label text-on-surface-variant mb-unit-4 text-xs">{t(locale, 'fortaleza.dashboard.risk_label')}</h3>
+          <div class="text-6xl font-bold text-primary tracking-tighter">842</div>
+          <div class="mt-unit-4 flex items-center gap-unit-2 justify-center">
+            <span class="material-symbols-outlined text-primary text-sm">trending_up</span>
+            <span class="font-mono-label text-primary text-xs">{t(locale, 'fortaleza.dashboard.risk_change')}</span>
+          </div>
+        </div>
+        <div class="w-full mt-unit-8 h-2 bg-background border border-outline-variant overflow-hidden">
+          <div class="h-full bg-primary" style="width:84%"></div>
+        </div>
+      </div>
+
+      <!-- Topology Map -->
+      <div class="md:col-span-8 border border-outline-variant p-unit-6 bg-surface-container min-h-[200px] flex flex-col">
+        <div class="flex justify-between items-center mb-unit-4">
+          <h3 class="font-mono-label text-on-surface text-xs">{t(locale, 'fortaleza.dashboard.topology_label')}</h3>
+          <span class="text-on-surface-variant font-mono-code text-[10px]">{t(locale, 'fortaleza.dashboard.topology_region')}</span>
+        </div>
+        <div class="flex-1 relative bg-background/50 border border-outline-variant/30 p-unit-4 flex items-center justify-center min-h-[120px]">
+          <div class="absolute top-1/2 left-1/4 w-3 h-3 bg-primary rounded-full shadow-[0_0_15px_#6bfb9a]"></div>
+          <div class="absolute top-1/3 left-1/2 w-4 h-4 bg-secondary rounded-full shadow-[0_0_15px_#ffb95f]"></div>
+          <div class="absolute bottom-1/4 right-1/3 w-2 h-2 bg-error rounded-full shadow-[0_0_15px_#ffb4ab]"></div>
+          <svg class="w-full h-full opacity-20 absolute inset-0" viewBox="0 0 400 200">
+            <path d="M50,100 L200,50 L350,150 M200,50 L300,100" fill="none" stroke="white" stroke-width="1"></path>
+          </svg>
+          <div class="font-mono-label text-on-surface-variant text-[10px] opacity-50 select-none">NODE_CLUSTER_Z-01</div>
+        </div>
+      </div>
+
+      <!-- Metrics -->
+      <div class="md:col-span-3 border border-outline-variant p-unit-4 bg-surface-container">
+        <h4 class="font-mono-label text-on-surface-variant text-[11px] mb-unit-2">{t(locale, 'fortaleza.dashboard.metric_ssl')}</h4>
+        <div class="text-headline-sm font-headline-sm text-primary">99.2%</div>
+        <div class="text-[10px] font-mono-code text-on-surface-variant">{t(locale, 'fortaleza.dashboard.metric_ssl_detail')}</div>
+      </div>
+      <div class="md:col-span-3 border border-outline-variant p-unit-4 bg-surface-container">
+        <h4 class="font-mono-label text-on-surface-variant text-[11px] mb-unit-2">{t(locale, 'fortaleza.dashboard.metric_email')}</h4>
+        <div class="text-headline-sm font-headline-sm text-primary">{t(locale, 'fortaleza.dashboard.metric_email_val')}</div>
+        <div class="text-[10px] font-mono-code text-on-surface-variant">{t(locale, 'fortaleza.dashboard.metric_email_detail')}</div>
+      </div>
+      <div class="md:col-span-3 border border-secondary/30 p-unit-4 bg-surface-container">
+        <h4 class="font-mono-label text-secondary text-[11px] mb-unit-2">{t(locale, 'fortaleza.dashboard.metric_cve')}</h4>
+        <div class="text-headline-sm font-headline-sm text-secondary">03</div>
+        <div class="text-[10px] font-mono-code text-on-surface-variant">{t(locale, 'fortaleza.dashboard.metric_cve_detail')}</div>
+      </div>
+      <div class="md:col-span-3 border border-outline-variant p-unit-4 bg-surface-container">
+        <h4 class="font-mono-label text-on-surface-variant text-[11px] mb-unit-2">{t(locale, 'fortaleza.dashboard.metric_uptime')}</h4>
+        <div class="text-headline-sm font-headline-sm text-on-surface">99.99%</div>
+        <div class="text-[10px] font-mono-code text-on-surface-variant">{t(locale, 'fortaleza.dashboard.metric_uptime_detail')}</div>
+      </div>
+    </div>
+  </div>
+</section>

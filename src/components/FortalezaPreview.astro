@@ -1,0 +1,85 @@
+---
+import type { Locale } from '../i18n/utils';
+import { t, localePath } from '../i18n/utils';
+import { FORTALEZA_SIGNUP } from '../config/links';
+import SectionLabel from './SectionLabel.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+---
+
+<section class="py-16 px-margin-mobile md:px-margin-desktop border-t border-outline-variant bg-surface-container-lowest">
+  <div class="max-w-max-width mx-auto grid grid-cols-1 md:grid-cols-2 gap-unit-8 items-center">
+    <div>
+      <SectionLabel text={t(locale, 'home.fortaleza_preview.label')} />
+      <h2 class="font-display-lg text-[40px] md:text-display-lg leading-none tracking-tighter text-primary mb-unit-4">
+        {t(locale, 'home.fortaleza_preview.title')}
+      </h2>
+      <p class="font-headline-sm text-headline-sm text-on-surface-variant mb-unit-4">
+        {t(locale, 'home.fortaleza_preview.subtitle')}
+      </p>
+      <p class="font-body-md text-on-surface-variant mb-unit-8">
+        {t(locale, 'home.fortaleza_preview.desc')}
+      </p>
+
+      <div class="inline-flex items-center gap-unit-2 mb-unit-8 py-1 px-3 border border-secondary/40 bg-surface-container-lowest">
+        <span class="w-2 h-2 rounded-full bg-secondary"></span>
+        <span class="font-mono-label text-xs text-secondary">{t(locale, 'home.fortaleza_preview.badge_mx')}</span>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-unit-4">
+        <a
+          href={FORTALEZA_SIGNUP}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative px-unit-8 py-unit-4 bg-primary text-on-primary font-mono-label font-bold flex items-center justify-center overflow-hidden gap-2 hover:opacity-90 transition-opacity"
+        >
+          {t(locale, 'home.fortaleza_preview.cta_primary')}
+          <span class="material-symbols-outlined text-base">open_in_new</span>
+        </a>
+        <a
+          href={localePath('/fortaleza', locale)}
+          class="px-unit-8 py-unit-4 border border-outline-variant text-on-surface font-mono-label hover:bg-surface-container transition-all flex items-center justify-center gap-2"
+        >
+          <span class="text-primary">&gt;</span>
+          {t(locale, 'home.fortaleza_preview.cta_secondary')}
+        </a>
+      </div>
+    </div>
+
+    <!-- Fortaleza mini dashboard preview -->
+    <div class="border border-outline-variant bg-surface-container p-unit-6 space-y-unit-4">
+      <div class="flex items-center justify-between border-b border-outline-variant pb-unit-4">
+        <span class="font-mono-label text-primary font-bold">Fortaleza</span>
+        <span class="font-mono-label text-xs text-on-surface-variant">v4.2.0</span>
+      </div>
+      <div class="grid grid-cols-2 gap-unit-4">
+        <div class="border border-outline-variant p-unit-4 bg-background">
+          <div class="font-mono-label text-[10px] text-on-surface-variant mb-1">SSL/TLS</div>
+          <div class="font-headline-sm text-primary">99.2%</div>
+          <div class="font-mono-code text-[9px] text-on-surface-variant">82 OK / 1 WARN</div>
+        </div>
+        <div class="border border-outline-variant p-unit-4 bg-background">
+          <div class="font-mono-label text-[10px] text-on-surface-variant mb-1">EMAIL</div>
+          <div class="font-headline-sm text-primary">{locale === 'es' ? 'SEGURO' : 'SECURE'}</div>
+          <div class="font-mono-code text-[9px] text-on-surface-variant">DMARC: REJECT</div>
+        </div>
+        <div class="border border-secondary/30 p-unit-4 bg-background">
+          <div class="font-mono-label text-[10px] text-secondary mb-1">CVE QUEUE</div>
+          <div class="font-headline-sm text-secondary">03</div>
+          <div class="font-mono-code text-[9px] text-on-surface-variant">HIGH: 3 / CRIT: 0</div>
+        </div>
+        <div class="border border-outline-variant p-unit-4 bg-background">
+          <div class="font-mono-label text-[10px] text-on-surface-variant mb-1">UPTIME</div>
+          <div class="font-headline-sm text-on-surface">99.99%</div>
+          <div class="font-mono-code text-[9px] text-on-surface-variant">12ms global</div>
+        </div>
+      </div>
+      <div class="font-mono-code text-[10px] text-on-surface-variant">
+        LFPDPPP · PCI DSS · ISO 27001 · OWASP Top 10
+      </div>
+    </div>
+  </div>
+</section>

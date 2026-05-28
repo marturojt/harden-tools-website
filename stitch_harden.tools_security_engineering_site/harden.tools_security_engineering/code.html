@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Geist:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "secondary-fixed-dim": "#ffb95f",
+                "on-secondary": "#472a00",
+                "secondary": "#ffb95f",
+                "primary-fixed-dim": "#4de082",
+                "surface-tint": "#4de082",
+                "primary-container": "#4ade80",
+                "on-tertiary-fixed-variant": "#6c3a0f",
+                "on-secondary-fixed": "#2a1700",
+                "on-tertiary-fixed": "#301400",
+                "outline-variant": "#3d4a3e",
+                "surface-container-highest": "#353534",
+                "inverse-on-surface": "#313030",
+                "surface-variant": "#353534",
+                "on-secondary-fixed-variant": "#653e00",
+                "on-primary-container": "#005e2d",
+                "on-background": "#e5e2e1",
+                "on-error": "#690005",
+                "tertiary-fixed": "#ffdcc6",
+                "surface-container-lowest": "#0e0e0e",
+                "background": "#131313",
+                "primary-fixed": "#6dfe9c",
+                "inverse-surface": "#e5e2e1",
+                "on-surface": "#e5e2e1",
+                "tertiary-fixed-dim": "#ffb784",
+                "surface-container-low": "#1c1b1b",
+                "on-primary-fixed": "#00210c",
+                "surface-container-high": "#2a2a2a",
+                "error": "#ffb4ab",
+                "on-error-container": "#ffdad6",
+                "on-secondary-container": "#5b3800",
+                "tertiary-container": "#ffb47f",
+                "on-primary-fixed-variant": "#005227",
+                "primary": "#6bfb9a",
+                "on-surface-variant": "#bccabb",
+                "on-tertiary-container": "#794418",
+                "error-container": "#93000a",
+                "inverse-primary": "#006d36",
+                "surface-container": "#201f1f",
+                "tertiary": "#ffd9c1",
+                "surface-bright": "#3a3939",
+                "on-primary": "#003919",
+                "outline": "#869486",
+                "surface-dim": "#131313",
+                "surface": "#131313",
+                "secondary-container": "#ee9800",
+                "secondary-fixed": "#ffddb8",
+                "on-tertiary": "#4f2500"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "unit-2": "0.5rem",
+                "margin-mobile": "16px",
+                "gutter": "24px",
+                "margin-desktop": "64px",
+                "base": "4px",
+                "unit-8": "2rem",
+                "max-width": "1440px",
+                "unit-1": "0.25rem",
+                "unit-4": "1rem"
+            },
+            "fontFamily": {
+                "mono-label": ["JetBrains Mono"],
+                "headline-md": ["Geist"],
+                "mono-code": ["JetBrains Mono"],
+                "body-lg": ["Geist"],
+                "body-md": ["Geist"],
+                "headline-sm": ["Geist"],
+                "display-lg": ["Geist"],
+                "headline-lg-mobile": ["Geist"]
+            },
+            "fontSize": {
+                "mono-label": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                "mono-code": ["14px", {"lineHeight": "1.7", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "body-md": ["15px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "headline-sm": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+            font-family: 'Geist', sans-serif;
+        }
+        .grid-pattern {
+            background-image: radial-gradient(#262626 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.15);
+        }
+        .terminal-cursor::after {
+            content: '_';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-unit-4 max-w-max-width mx-auto bg-background border-b border-outline-variant">
+<div class="font-mono-label text-body-lg font-bold tracking-tighter text-primary">Harden.Tools</div>
+<nav class="hidden md:flex items-center gap-unit-8">
+<a class="text-on-surface-variant font-mono-label hover:text-primary transition-colors duration-200" href="#">Services</a>
+<a class="text-on-surface-variant font-mono-label hover:text-primary transition-colors duration-200" href="#">Philosophy</a>
+<a class="text-on-surface-variant font-mono-label hover:text-primary transition-colors duration-200" href="#">Fortaleza</a>
+</nav>
+<button class="bg-primary text-on-primary font-mono-label px-unit-4 py-unit-2 rounded-lg hover:opacity-80 transition-all">Get Started</button>
+</header>
+<main class="pt-24 overflow-x-hidden">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex flex-col justify-center px-margin-desktop grid-pattern">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-background pointer-events-none"></div>
+<div class="relative z-10 max-w-4xl">
+<div class="inline-flex items-center gap-2 mb-unit-8 py-1 px-3 border border-outline-variant bg-surface-container-lowest rounded-full">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-mono-label text-xs uppercase tracking-widest text-on-surface-variant">System Status: Optimal</span>
+</div>
+<h1 class="font-display-lg text-display-lg md:text-[84px] leading-none mb-unit-8 tracking-tighter">
+                    Security Engineering for <span class="text-primary italic">Real</span> Infrastructure
+                </h1>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mb-unit-8">
+                    We replace PowerPoint strategies with automated hardening and operational tooling. Harden.Tools builds the systems that keep your infrastructure resilient by default.
+                </p>
+<div class="flex flex-col md:flex-row gap-unit-4">
+<button class="group relative px-unit-8 py-unit-4 bg-primary text-on-primary font-mono-label font-bold flex items-center justify-center overflow-hidden">
+<span class="relative z-10 flex items-center gap-2">
+                            Explore Fortaleza
+                            <span class="material-symbols-outlined text-base">arrow_forward</span>
+</span>
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+</button>
+<button class="px-unit-8 py-unit-4 border border-outline-variant text-on-surface font-mono-label hover:bg-surface-container transition-all flex items-center justify-center gap-2">
+<span class="text-primary">&gt;</span> View Services
+                    </button>
+</div>
+</div>
+<!-- Abstract Background Visual -->
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-2/3 hidden xl:block opacity-40">
+<div class="relative w-full h-full border border-outline-variant p-unit-4 bg-surface-container-lowest/50 backdrop-blur-sm">
+<div class="font-mono-code text-[10px] text-primary/60 leading-tight space-y-1">
+<div>$ harden --target production --level extreme</div>
+<div>[INFO] Loading security profile: FORTALEZA_V3</div>
+<div class="text-on-surface-variant">Analyzing network topology... done.</div>
+<div class="text-on-surface-variant">Checking IAM roles... [WARM] Over-permissive detected.</div>
+<div class="text-secondary-fixed-dim">! Correcting policy: iam-role-svc-04</div>
+<div class="text-primary">&gt;&gt;&gt; System hardening in progress (45%)</div>
+<div class="w-full h-1 bg-surface-container-high mt-4 overflow-hidden">
+<div class="h-full bg-primary w-2/3 animate-[progress_5s_infinite_linear]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Philosophy Section -->
+<section class="py-unit-8 px-margin-desktop border-t border-outline-variant bg-surface-container-lowest">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-unit-8 items-start">
+<div class="md:col-span-4 sticky top-32">
+<span class="font-mono-label text-primary uppercase tracking-[0.2em] mb-unit-4 block">Philosophy</span>
+<h2 class="font-headline-md text-headline-md mb-unit-4">Security as Engineering</h2>
+<p class="font-body-md text-on-surface-variant">We treat security as a first-class citizen of the development lifecycle, not an afterthought or a compliance checklist.</p>
+</div>
+<div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-px bg-outline-variant border border-outline-variant">
+<div class="bg-background p-unit-8 hover:bg-surface-container-low transition-colors group">
+<div class="font-mono-code text-primary mb-unit-4">01</div>
+<h3 class="font-headline-sm text-headline-sm mb-unit-2">Automation First</h3>
+<p class="font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">If it's manual, it's broken. Every hardening control we implement is codified in Terraform, Ansible, or custom operators.</p>
+</div>
+<div class="bg-background p-unit-8 hover:bg-surface-container-low transition-colors group">
+<div class="font-mono-code text-primary mb-unit-4">02</div>
+<h3 class="font-headline-sm text-headline-sm mb-unit-2">Tooling over Slides</h3>
+<p class="font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">We deliver working code and infrastructure, not 50-page PowerPoint decks that collect digital dust in a shared drive.</p>
+</div>
+<div class="bg-background p-unit-8 hover:bg-surface-container-low transition-colors group">
+<div class="font-mono-code text-primary mb-unit-4">03</div>
+<h3 class="font-headline-sm text-headline-sm mb-unit-2">Operational Realism</h3>
+<p class="font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Security controls must work for developers. We design guardrails that provide safety without sacrificing velocity.</p>
+</div>
+<div class="bg-background p-unit-8 hover:bg-surface-container-low transition-colors group">
+<div class="font-mono-code text-primary mb-unit-4">04</div>
+<h3 class="font-headline-sm text-headline-sm mb-unit-2">Continuous State</h3>
+<p class="font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Infrastructure is dynamic. Security must be continuously validated through automated testing and monitoring.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-unit-8 px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-end mb-unit-8 gap-unit-4">
+<div>
+<span class="font-mono-label text-primary uppercase tracking-[0.2em] mb-unit-4 block">Core Competencies</span>
+<h2 class="font-headline-md text-headline-md">Our Services</h2>
+</div>
+<div class="font-mono-code text-on-surface-variant text-sm border-l border-primary pl-unit-4">
+                    grep -r "vulnerability" /infrastructure | fix
+                </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Offensive Security -->
+<div class="relative overflow-hidden border border-outline-variant bg-surface-container-low group aspect-square flex flex-col p-unit-8">
+<div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
+<div class="absolute top-0 right-0 p-unit-4 font-mono-code text-[8px] whitespace-pre text-primary">
+                            [0x7ffd534] jmp rsi
+                            [0x7ffd53a] xor eax, eax
+                            [0x7ffd53c] push rax
+                            [0x7ffd53e] movabs rbx, 0x68732f2f6e69622f
+                            [0x7ffd548] push rbx
+                        </div>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-unit-4">Offensive Security</h3>
+<p class="font-body-md text-on-surface-variant mb-auto">Emulating real-world adversaries to find gaps in your detection and response capabilities.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant font-mono-label text-xs flex justify-between items-center">
+<span>SERVICE_TYPE: RED_TEAM</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">terminal</span>
+</div>
+</div>
+<!-- Infrastructure Hardening -->
+<div class="relative overflow-hidden border border-outline-variant bg-surface-container-low group aspect-square flex flex-col p-unit-8">
+<div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
+<div class="absolute inset-0 flex flex-wrap gap-2 p-2 pointer-events-none">
+<div class="w-8 h-1 bg-primary"></div><div class="w-12 h-1 bg-primary"></div>
+<div class="w-4 h-1 bg-outline"></div><div class="w-16 h-1 bg-primary"></div>
+<div class="w-6 h-1 bg-primary"></div><div class="w-10 h-1 bg-outline"></div>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-unit-4">Infrastructure Hardening</h3>
+<p class="font-body-md text-on-surface-variant mb-auto">Linux, Cloud, and Kubernetes configurations hardened against modern escape techniques and lateral movement.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant font-mono-label text-xs flex justify-between items-center">
+<span>SERVICE_TYPE: HARDENING</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">settings_ethernet</span>
+</div>
+</div>
+<!-- Security Tooling -->
+<div class="relative overflow-hidden border border-outline-variant bg-surface-container-low group aspect-square flex flex-col p-unit-8">
+<h3 class="font-headline-sm text-headline-sm mb-unit-4">Security Tooling</h3>
+<p class="font-body-md text-on-surface-variant mb-auto">Building bespoke internal tools to automate repetitive security tasks and streamline incident response workflows.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant font-mono-label text-xs flex justify-between items-center">
+<span>SERVICE_TYPE: BUILD</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">build</span>
+</div>
+</div>
+<!-- Continuous Validation -->
+<div class="relative overflow-hidden border border-outline-variant bg-surface-container-low group aspect-square flex flex-col p-unit-8">
+<h3 class="font-headline-sm text-headline-sm mb-unit-4">Continuous Validation</h3>
+<p class="font-body-md text-on-surface-variant mb-auto">Automated security unit tests and drift detection for infrastructure-as-code and runtime environments.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant font-mono-label text-xs flex justify-between items-center">
+<span>SERVICE_TYPE: VALIDATE</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">sync</span>
+</div>
+</div>
+<!-- AI-Assisted Ops -->
+<div class="relative overflow-hidden border border-outline-variant bg-surface-container-low group aspect-square flex flex-col p-unit-8 md:col-span-2">
+<div class="flex flex-col md:flex-row h-full gap-unit-8">
+<div class="flex-1 flex flex-col">
+<h3 class="font-headline-sm text-headline-sm mb-unit-4">AI-Assisted Security Ops</h3>
+<p class="font-body-md text-on-surface-variant mb-auto">Leveraging LLMs for automated triage, log analysis, and real-time threat intelligence synthesis within your SOC.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant font-mono-label text-xs flex justify-between items-center">
+<span>SERVICE_TYPE: INTELLIGENCE</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">neurology</span>
+</div>
+</div>
+<div class="flex-1 bg-background border border-outline-variant p-unit-4 font-mono-code text-xs text-on-surface-variant overflow-hidden">
+<div class="animate-pulse text-primary mb-2">RUNNING ANALYSIS...</div>
+<div class="opacity-60 space-y-1">
+<div>&gt; Input: VPC_flow_logs_2024-10-21</div>
+<div>&gt; Model: Harden-Llama-70B-Sec</div>
+<div>&gt; Status: Anomaly detected at 10.0.4.12</div>
+<div>&gt; Action: Generating temporary isolation rule</div>
+<div class="text-primary">&gt; Security Policy Updated Successfully.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stack Grid -->
+<section class="py-unit-8 px-margin-desktop bg-surface-container-lowest border-y border-outline-variant">
+<div class="max-w-max-width mx-auto">
+<span class="font-mono-label text-primary uppercase tracking-[0.2em] mb-unit-8 block text-center">Engineered With</span>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-unit-4">
+<div class="flex flex-col items-center justify-center p-unit-4 border border-outline-variant hover:border-primary transition-colors group">
+<span class="font-mono-label text-sm text-on-surface-variant group-hover:text-primary">LINUX</span>
+</div>
+<div class="flex flex-col items-center justify-center p-unit-4 border border-outline-variant hover:border-primary transition-colors group">
+<span class="font-mono-label text-sm text-on-surface-variant group-hover:text-primary">PYTHON</span>
+</div>
+<div class="flex flex-col items-center justify-center p-unit-4 border border-outline-variant hover:border-primary transition-colors group">
+<span class="font-mono-label text-sm text-on-surface-variant group-hover:text-primary">FASTAPI</span>
+</div>
+<div class="flex flex-col items-center justify-center p-unit-4 border border-outline-variant hover:border-primary transition-colors group">
+<span class="font-mono-label text-sm text-on-surface-variant group-hover:text-primary">NEXT.JS</span>
+</div>
+<div class="flex flex-col items-center justify-center p-unit-4 border border-outline-variant hover:border-primary transition-colors group">
+<span class="font-mono-label text-sm text-on-surface-variant group-hover:text-primary">POSTGRESQL</span>
+</div>
+<div class="flex flex-col items-center justify-center p-unit-4 border border-outline-variant hover:border-primary transition-colors group">
+<span class="font-mono-label text-sm text-on-surface-variant group-hover:text-primary">REDIS</span>
+</div>
+<div class="flex flex-col items-center justify-center p-unit-4 border border-outline-variant hover:border-primary transition-colors group">
+<span class="font-mono-label text-sm text-on-surface-variant group-hover:text-primary">AUTOMATION</span>
+</div>
+<div class="flex flex-col items-center justify-center p-unit-4 border border-outline-variant hover:border-primary transition-colors group">
+<span class="font-mono-label text-sm text-on-surface-variant group-hover:text-primary">AI/ML</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Approach Section -->
+<section class="py-unit-8 px-margin-desktop overflow-hidden">
+<h2 class="font-headline-md text-headline-md mb-unit-8 text-center">Our Methodology</h2>
+<div class="relative">
+<!-- Progress Line -->
+<div class="absolute top-1/2 left-0 w-full h-px bg-outline-variant hidden md:block"></div>
+<div class="flex flex-col md:flex-row justify-between relative z-10 gap-unit-8">
+<!-- Step 1 -->
+<div class="flex-1 flex flex-col items-center text-center">
+<div class="w-12 h-12 bg-background border border-primary flex items-center justify-center mb-unit-4 group hover:bg-primary transition-all duration-300">
+<span class="font-mono-code text-primary group-hover:text-background font-bold">01</span>
+</div>
+<h4 class="font-mono-label text-on-surface mb-unit-2">Discover</h4>
+<p class="font-body-md text-on-surface-variant text-sm px-unit-4">Asset mapping and attack surface visualization.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex-1 flex flex-col items-center text-center">
+<div class="w-12 h-12 bg-background border border-primary flex items-center justify-center mb-unit-4 group hover:bg-primary transition-all duration-300">
+<span class="font-mono-code text-primary group-hover:text-background font-bold">02</span>
+</div>
+<h4 class="font-mono-label text-on-surface mb-unit-2">Validate</h4>
+<p class="font-body-md text-on-surface-variant text-sm px-unit-4">Evidence-based testing of current security controls.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex-1 flex flex-col items-center text-center">
+<div class="w-12 h-12 bg-background border border-primary flex items-center justify-center mb-unit-4 group hover:bg-primary transition-all duration-300">
+<span class="font-mono-code text-primary group-hover:text-background font-bold">03</span>
+</div>
+<h4 class="font-mono-label text-on-surface mb-unit-2">Harden</h4>
+<p class="font-body-md text-on-surface-variant text-sm px-unit-4">Configuration tightening and architectural fixes.</p>
+</div>
+<!-- Step 4 -->
+<div class="flex-1 flex flex-col items-center text-center">
+<div class="w-12 h-12 bg-background border border-primary flex items-center justify-center mb-unit-4 group hover:bg-primary transition-all duration-300">
+<span class="font-mono-code text-primary group-hover:text-background font-bold">04</span>
+</div>
+<h4 class="font-mono-label text-on-surface mb-unit-2">Automate</h4>
+<p class="font-body-md text-on-surface-variant text-sm px-unit-4">Codifying controls for sustainable operations.</p>
+</div>
+<!-- Step 5 -->
+<div class="flex-1 flex flex-col items-center text-center">
+<div class="w-12 h-12 bg-background border border-primary flex items-center justify-center mb-unit-4 group hover:bg-primary transition-all duration-300">
+<span class="font-mono-code text-primary group-hover:text-background font-bold">05</span>
+</div>
+<h4 class="font-mono-label text-on-surface mb-unit-2">Verify</h4>
+<p class="font-body-md text-on-surface-variant text-sm px-unit-4">Continuous monitoring and automated regression tests.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-24 px-margin-desktop bg-primary text-on-primary">
+<div class="max-w-4xl mx-auto text-center">
+<h2 class="font-display-lg text-display-lg mb-unit-8 leading-none tracking-tighter">Ready to secure your stack?</h2>
+<div class="font-mono-code mb-unit-8 bg-black/10 py-unit-4 px-unit-8 inline-block rounded-lg">
+                    $ ssh operator@harden.tools --action start-engagement
+                </div>
+<div>
+<button class="bg-on-primary text-primary font-mono-label font-bold px-unit-8 py-unit-4 rounded hover:opacity-90 transition-opacity">
+                        Connect with an Engineer
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full px-margin-desktop py-unit-8 flex flex-col md:flex-row justify-between items-center gap-unit-4 bg-surface-container-lowest border-t border-outline-variant">
+<div class="font-mono-label text-body-md text-on-surface">© 2024 Harden.Tools — Built for Operators</div>
+<div class="flex flex-wrap gap-unit-4 justify-center">
+<a class="text-on-surface-variant font-mono-code text-sm hover:text-primary transition-colors" href="#">Status: [SYSTEMS OPERATIONAL]</a>
+<a class="text-on-surface-variant font-mono-code text-sm hover:text-primary transition-colors" href="#">Sitemap</a>
+<a class="text-on-surface-variant font-mono-code text-sm hover:text-primary transition-colors" href="#">Security.txt</a>
+<a class="text-on-surface-variant font-mono-code text-sm hover:text-primary transition-colors" href="#">Engineering</a>
+</div>
+</footer>
+<script>
+        // Micro-interaction: Update terminal text colors randomly
+        setInterval(() => {
+            const progress = document.querySelector('.animate-\\[progress_5s_infinite_linear\\]');
+            if (progress) {
+                const width = parseInt(progress.style.width) || 0;
+                progress.style.width = ((width + 1) % 100) + '%';
+            }
+        }, 100);
+    </script>
+</body></html>

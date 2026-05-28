@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import CTASection from '../components/CTASection.astro';
+import { t, localePath } from '../i18n/utils';
+import { CALENDLY_URL } from '../config/links';
+import esData from '../i18n/es.json';
+
+const locale = 'es' as const;
+const manifestoItems = esData.philosophy.manifesto.items;
+const principles = esData.philosophy.principles.items;
+const visionParas = esData.philosophy.vision.paras;
+const cultureItems = esData.philosophy.culture.items;
+---
+
+<BaseLayout
+  locale={locale}
+  title={t(locale, 'philosophy.meta.title')}
+  description={t(locale, 'philosophy.meta.description')}
+  path="/philosophy"
+>
+  <!-- Hero -->
+  <section class="px-margin-mobile md:px-margin-desktop pt-40 pb-16 border-b border-outline-variant grid-pattern">
+    <div class="max-w-4xl">
+      <SectionLabel text={t(locale, 'philosophy.hero.label')} />
+      <h1 class="font-bold text-[48px] md:text-display-lg leading-none tracking-tighter mb-unit-4">
+        {t(locale, 'philosophy.hero.title')}
+      </h1>
+      <p class="font-body-lg text-on-surface-variant max-w-2xl">
+        {t(locale, 'philosophy.hero.desc')}
+      </p>
+    </div>
+  </section>
+
+  <!-- Manifesto -->
+  <section class="px-margin-mobile md:px-margin-desktop py-16 bg-surface-container-lowest border-b border-outline-variant">
+    <div class="max-w-max-width mx-auto grid grid-cols-1 md:grid-cols-2 gap-unit-8">
+      <div>
+        <h2 class="font-headline-md text-headline-md mb-unit-8">{t(locale, 'philosophy.manifesto.title')}</h2>
+        <ul class="space-y-unit-4">
+          {
+            manifestoItems.map((item) => (
+              <li class="font-headline-sm text-on-surface-variant flex items-start gap-unit-2">
+                <span class="text-primary font-mono-code mt-1">&gt;</span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-headline-md text-headline-md mb-unit-4">{t(locale, 'philosophy.what_we_do.title')}</h2>
+        <p class="font-body-lg text-on-surface-variant">{t(locale, 'philosophy.what_we_do.desc')}</p>
+        <blockquote class="mt-unit-8 border-l-2 border-primary pl-unit-4 font-headline-sm text-primary">
+          {locale === 'es'
+            ? 'La seguridad debe ser verificable, automatizable y técnicamente ejecutable.'
+            : 'Security must be verifiable, automatable, and technically executable.'}
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section class="px-margin-mobile md:px-margin-desktop py-16">
+    <div class="max-w-max-width mx-auto">
+      <SectionLabel text={t(locale, 'philosophy.principles.label')} />
+      <h2 class="font-headline-md text-headline-md mb-unit-8">{t(locale, 'philosophy.principles.title')}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-outline-variant border border-outline-variant">
+        {
+          principles.map((p) => (
+            <div class="bg-background p-unit-8 hover:bg-surface-container-low transition-colors group">
+              <div class="font-mono-code text-primary mb-unit-4">{p.num}</div>
+              <h3 class="font-headline-sm text-headline-sm mb-unit-2">{p.title}</h3>
+              <p class="font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">
+                {p.desc}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section class="px-margin-mobile md:px-margin-desktop py-16 bg-surface-container-lowest border-t border-outline-variant">
+    <div class="max-w-max-width mx-auto grid grid-cols-1 md:grid-cols-2 gap-unit-8">
+      <div>
+        <SectionLabel text={t(locale, 'philosophy.vision.label')} />
+        <h2 class="font-headline-md text-headline-md mb-unit-8">{t(locale, 'philosophy.vision.title')}</h2>
+        <div class="space-y-unit-4">
+          {visionParas.map((p) => <p class="font-body-lg text-on-surface-variant">{p}</p>)}
+        </div>
+      </div>
+      <div>
+        <SectionLabel text={t(locale, 'philosophy.culture.label')} />
+        <div class="flex flex-wrap gap-unit-2">
+          {
+            cultureItems.map((item) => (
+              <span class="font-mono-label text-xs text-on-surface border border-outline-variant px-3 py-1.5 hover:border-primary hover:text-primary transition-colors">
+                {item}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection locale={locale} />
+</BaseLayout>

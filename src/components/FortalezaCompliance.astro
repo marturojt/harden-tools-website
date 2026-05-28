@@ -1,0 +1,45 @@
+---
+import type { Locale } from '../i18n/utils';
+import { t } from '../i18n/utils';
+import SectionLabel from './SectionLabel.astro';
+import esData from '../i18n/es.json';
+import enData from '../i18n/en.json';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const data = locale === 'es' ? esData : enData;
+const frameworks = data.fortaleza.compliance.items;
+---
+
+<section class="py-16 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest border-t border-outline-variant">
+  <div class="max-w-max-width mx-auto">
+    <div class="text-center mb-unit-8">
+      <SectionLabel text={t(locale, 'fortaleza.compliance.label')} />
+      <h2 class="font-headline-md text-headline-md mb-unit-2">{t(locale, 'fortaleza.compliance.title')}</h2>
+      <p class="font-body-md text-on-surface-variant">{t(locale, 'fortaleza.compliance.subtitle')}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+      {
+        frameworks.map((fw) => (
+          <div class:list={[
+            'border p-unit-6 bg-background hover:bg-surface-container-low transition-colors group',
+            fw.badge ? 'border-secondary/40' : 'border-outline-variant',
+          ]}>
+            <div class="flex items-start justify-between mb-unit-4">
+              <h3 class="font-mono-label text-on-surface font-bold">{fw.name}</h3>
+              {fw.badge && (
+                <span class="text-[9px] bg-secondary/20 text-secondary px-1.5 py-0.5 border border-secondary/30 font-mono-label whitespace-nowrap">
+                  {fw.badge}
+                </span>
+              )}
+            </div>
+            <p class="font-body-md text-xs text-on-surface-variant">{fw.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,358 @@
+{
+  "nav": {
+    "services": "Services",
+    "philosophy": "Philosophy",
+    "fortaleza": "Fortaleza",
+    "contact": "Contact",
+    "get_started": "Get Started"
+  },
+  "home": {
+    "hero": {
+      "status_badge": "System Status: Optimal",
+      "title_part1": "Security Engineering for",
+      "title_highlight": "Real Infrastructure",
+      "description": "We replace PowerPoint strategies with automated hardening and operational tooling. Harden.Tools builds the systems that keep your infrastructure resilient by default.",
+      "cta_primary": "Explore Fortaleza",
+      "cta_secondary": "View Services",
+      "terminal": [
+        "$ harden --target production --level extreme",
+        "[INFO] Loading security profile: FORTALEZA_V3",
+        "Analyzing network topology... done.",
+        "Checking IAM roles... [WARN] Over-permissive detected.",
+        "! Correcting policy: iam-role-svc-04",
+        ">>> System hardening in progress (45%)"
+      ]
+    },
+    "philosophy": {
+      "label": "Philosophy",
+      "title": "Security as Engineering",
+      "description": "We treat security as a first-class citizen of the development lifecycle, not an afterthought or a compliance checklist.",
+      "items": [
+        {
+          "num": "01",
+          "title": "Automation First",
+          "desc": "If it's manual, it's broken. Every hardening control we implement is codified in Terraform, Ansible, or custom operators."
+        },
+        {
+          "num": "02",
+          "title": "Tooling over Slides",
+          "desc": "We deliver working code and infrastructure, not 50-page PowerPoint decks that collect digital dust in a shared drive."
+        },
+        {
+          "num": "03",
+          "title": "Operational Realism",
+          "desc": "Security controls must work for developers. We design guardrails that provide safety without sacrificing velocity."
+        },
+        {
+          "num": "04",
+          "title": "Continuous State",
+          "desc": "Infrastructure is dynamic. Security must be continuously validated through automated testing and monitoring."
+        }
+      ]
+    },
+    "services": {
+      "label": "Core Competencies",
+      "title": "Our Services",
+      "command": "grep -r \"vulnerability\" /infrastructure | fix",
+      "items": [
+        {
+          "id": "offensive",
+          "name": "Offensive Security",
+          "desc": "Emulating real-world adversaries to find gaps in your detection and response capabilities.",
+          "type": "SERVICE_TYPE: RED_TEAM",
+          "icon": "terminal"
+        },
+        {
+          "id": "hardening",
+          "name": "Infrastructure Hardening",
+          "desc": "Linux, Cloud, and Kubernetes configurations hardened against modern escape techniques and lateral movement.",
+          "type": "SERVICE_TYPE: HARDENING",
+          "icon": "settings_ethernet"
+        },
+        {
+          "id": "tooling",
+          "name": "Security Tooling",
+          "desc": "Building bespoke internal tools to automate repetitive security tasks and streamline incident response workflows.",
+          "type": "SERVICE_TYPE: BUILD",
+          "icon": "build"
+        },
+        {
+          "id": "validation",
+          "name": "Continuous Validation",
+          "desc": "Automated security unit tests and drift detection for infrastructure-as-code and runtime environments.",
+          "type": "SERVICE_TYPE: VALIDATE",
+          "icon": "sync"
+        }
+      ]
+    },
+    "stack": {
+      "label": "Engineered With"
+    },
+    "methodology": {
+      "title": "Our Methodology",
+      "steps": [
+        { "num": "01", "name": "Discover", "desc": "Asset mapping and attack surface visualization." },
+        { "num": "02", "name": "Validate", "desc": "Evidence-based testing of current security controls." },
+        { "num": "03", "name": "Harden", "desc": "Configuration tightening and architectural fixes." },
+        { "num": "04", "name": "Automate", "desc": "Codifying controls for sustainable operations." },
+        { "num": "05", "name": "Verify", "desc": "Continuous monitoring and automated regression tests." }
+      ]
+    },
+    "fortaleza_preview": {
+      "label": "Flagship Product",
+      "title": "Fortaleza",
+      "subtitle": "Continuous Attack Surface Validation",
+      "desc": "A security analysis and validation suite for SMBs, technical teams, and SaaS providers that need real visibility into their digital exposure. 7 scanners in parallel, 4 compliance frameworks, PDF reports.",
+      "badge_mx": "Mexico-Only: LFPDPPP",
+      "cta_primary": "Try Fortaleza",
+      "cta_secondary": "Learn more"
+    },
+    "cta": {
+      "title": "Ready to secure your stack?",
+      "terminal_cmd": "$ ssh operator@harden.tools --action start-engagement",
+      "cta": "Connect with an Engineer"
+    }
+  },
+  "fortaleza": {
+    "meta": {
+      "title": "Fortaleza — Continuous Attack Surface Validation",
+      "description": "Security analysis suite for SMBs. 7 parallel scanners, LFPDPPP, PCI DSS, ISO 27001, OWASP. PDF reports in Spanish."
+    },
+    "hero": {
+      "version": "VERSION 4.2.0-STABLE",
+      "title": "Fortaleza",
+      "subtitle": "Continuous Attack Surface Validation. Infrastructure-native scanning for the modern operator.",
+      "built_by": "Built by Harden.Tools",
+      "cta_try": "Start Free Trial",
+      "cta_docs": "Documentation",
+      "terminal": [
+        "[INIT] Initializing Fortaleza Validator...",
+        "[SCAN] Crawling AS20473... Found 142 endpoints.",
+        "[AUTH] Authenticated via mTLS. Handshake: TLS_AES_256_GCM_SHA384",
+        "[WARN] Found Weak Cipher on api.prd.v4: SHA-1 detected.",
+        "[SEC] SPF/DKIM validation passing for harden.tools"
+      ]
+    },
+    "scanners": {
+      "label": "Technical Capabilities",
+      "title": "7 Scanners in Parallel",
+      "subtitle": "Passive and non-destructive scanning. Results in ~30-60 seconds per domain.",
+      "items": [
+        { "name": "HTTP Headers", "desc": "HSTS, CSP, COEP/COOP/CORP, cookie security", "icon": "http" },
+        { "name": "SSL/TLS", "desc": "Grade A+→F, certificate chain, CAA, HSTS preload", "icon": "lock" },
+        { "name": "Open Ports", "desc": "nmap top 100, exposed service detection", "icon": "router" },
+        { "name": "Tech & Sensitive Files", "desc": "Exposed stack, .env, .git, backup.sql detection", "icon": "folder_open" },
+        { "name": "DNS Reputation", "desc": "Blacklists, Google Safe Browsing, reputation scoring", "icon": "dns" },
+        { "name": "HaveIBeenPwned", "desc": "Domain data breaches, recency and impact scoring", "icon": "security" },
+        { "name": "Email Security", "desc": "SPF / DKIM / DMARC / MTA-STS / BIMI — #1 gap vs competition", "icon": "mail_lock", "highlight": true }
+      ]
+    },
+    "compliance": {
+      "label": "Multi-Framework Compliance",
+      "title": "4 Security Frameworks",
+      "subtitle": "Automated compliance verification across frameworks in a single scan.",
+      "items": [
+        { "name": "LFPDPPP", "badge": "Mexico Only", "desc": "Ley Federal de Protección de Datos Personales. The only automated verifier for Mexican data privacy law." },
+        { "name": "OWASP Top 10", "badge": null, "desc": "The 10 most critical web application security risks, automatically verified." },
+        { "name": "ISO 27001", "badge": null, "desc": "Technical controls from the international information security management standard." },
+        { "name": "PCI DSS", "badge": null, "desc": "Security standard for organizations that process payment card data." }
+      ]
+    },
+    "dashboard": {
+      "label": "Observability Dashboard",
+      "title": "Observability Dashboard",
+      "subtitle": "Real-time exposure metrics and infrastructure health clusters.",
+      "risk_label": "GLOBAL RISK SCORE",
+      "risk_change": "+12.4% SECURE",
+      "topology_label": "TOPOLOGY EXPOSURE MAP",
+      "topology_region": "REGION: GLOBAL-ANYCAST",
+      "metric_ssl": "SSL/TLS HEALTH",
+      "metric_ssl_detail": "82 Valid / 1 Warning",
+      "metric_email": "EMAIL HYGIENE",
+      "metric_email_val": "SECURE",
+      "metric_email_detail": "SPF: PASS | DMARC: REJECT",
+      "metric_cve": "CVE QUEUE",
+      "metric_cve_detail": "CRITICAL: 0 | HIGH: 3",
+      "metric_uptime": "UPTIME (P99)",
+      "metric_uptime_detail": "GLOBAL RESOLVE: 12ms",
+      "period_24h": "LAST 24H",
+      "period_live": "LIVE FEED"
+    },
+    "kanban": {
+      "label": "Vulnerability Lifecycle",
+      "title": "Vulnerability Kanban",
+      "col_backlog": "BACKLOG",
+      "col_remediating": "REMEDIATING",
+      "col_verified": "VERIFIED",
+      "severity_critical": "CRITICAL",
+      "severity_high": "HIGH",
+      "severity_info": "INFO"
+    },
+    "ai_section": {
+      "title": "02. AI-Assisted Remediation",
+      "desc": "Fortaleza generates context-aware CLI snippets to patch detected exposures instantly using your specific infrastructure provider tools.",
+      "powered_by": "Powered by Anthropic Claude",
+      "snippet_comment": "# Patching SSH exposure (AWS)",
+      "label": "AI-PATCH-SUGGESTION"
+    },
+    "map_section": {
+      "label": "Attack Surface Map",
+      "title": "INFRASTRUCTURE EXPOSURE MAP",
+      "systems": "SYSTEMS: 1,402 DETECTED",
+      "scanning": "SCANNING:"
+    },
+    "crypto_section": {
+      "label": "01. Cryptographic Validation",
+      "title": "01. Cryptographic Validation",
+      "desc": "Full-stack SSL/TLS analysis including cipher suite hardening verification, certificate chain transparency, and automated expiry rotation checks.",
+      "feat1": "Perfect Forward Secrecy Audit",
+      "feat2": "HSTS Configuration Check",
+      "feat3": "OCSP Stapling Verification"
+    },
+    "cta": {
+      "title": "Secure Your Perimeter.",
+      "desc": "Stop guessing your attack surface. Fortaleza provides the ground-truth observability needed for modern compliance and security standards. 14-day trial, no card required.",
+      "cta_scan": "START FREE SCAN",
+      "cta_pricing": "VIEW PLANS",
+      "trial_note": "14-day trial · No credit card · Passive and non-destructive"
+    }
+  },
+  "services": {
+    "meta": {
+      "title": "Services — Harden.Tools",
+      "description": "Offensive security, hardening, security tooling and continuous validation for modern infrastructure."
+    },
+    "hero": {
+      "label": "What We Do",
+      "title": "Security Engineering Services",
+      "desc": "We are not a traditional consultancy. We build real tooling, run technical tests, and deliver operational capabilities."
+    },
+    "items": [
+      {
+        "id": "offensive",
+        "name": "Offensive Security",
+        "tag": "RED_TEAM",
+        "short": "We simulate real attacks to discover exposed surfaces and compromise paths.",
+        "desc": "Our exercises prioritize real impact, technical validation, and practical remediation. We identify exposed surfaces, weak configurations, architecture errors, information leaks, and compromise paths. No bloated reports with irrelevant findings."
+      },
+      {
+        "id": "tooling",
+        "name": "Security Tooling",
+        "tag": "BUILD",
+        "short": "We build proprietary tools for continuous assessment, hardening, and automated compliance.",
+        "desc": "We develop internal platforms designed to operate in an automated, reproducible, and scalable manner. From exposure scanners to continuous validation systems integrated into your CI/CD pipelines."
+      },
+      {
+        "id": "hardening",
+        "name": "Infrastructure Hardening",
+        "tag": "HARDENING",
+        "short": "We harden servers, APIs, cloud infrastructure, email, and CI/CD pipelines.",
+        "desc": "We focus on reducing real attack surface: Linux servers, web applications, REST APIs, email configuration (SPF/DKIM/DMARC), cloud infrastructure (AWS/GCP/Azure), CI/CD pipelines, and critical network configurations."
+      },
+      {
+        "id": "validation",
+        "name": "Continuous Validation",
+        "tag": "VALIDATE",
+        "short": "Continuous validation mechanisms to detect drift and maintain security posture.",
+        "desc": "Security is not an annual event. We develop systems that detect drift, monitor exposure, validate controls, and maintain operational security posture continuously and automatically."
+      }
+    ],
+    "cta": {
+      "title": "Need something specific?",
+      "desc": "Every engagement is different. Tell us your context and we will help you define the right technical scope.",
+      "cta": "Talk to an Engineer"
+    }
+  },
+  "philosophy": {
+    "meta": {
+      "title": "Philosophy — Harden.Tools",
+      "description": "Security as Engineering. Our vision of cybersecurity as a verifiable, automatable technical discipline."
+    },
+    "hero": {
+      "label": "Who We Are",
+      "title": "Security as Engineering",
+      "desc": "We were not born as a traditional consultancy. We were born from terminals, Linux systems, automation, and offensive security."
+    },
+    "manifesto": {
+      "title": "What we don't do",
+      "items": [
+        "We don't sell smoke.",
+        "We don't sell 'magic AI'.",
+        "We don't sell audits that end up archived as PDFs.",
+        "We don't use empty dashboards.",
+        "We don't deliver superficial compliance."
+      ]
+    },
+    "what_we_do": {
+      "title": "What we do",
+      "desc": "We build tooling, processes, and operational capabilities. Security must be verifiable, automatable, and technically executable."
+    },
+    "principles": {
+      "label": "Principles",
+      "title": "How we operate",
+      "items": [
+        { "num": "01", "title": "Automate First", "desc": "If a process can be automated, it eventually must be automated. Automation eliminates human error and creates consistency." },
+        { "num": "02", "title": "Less Complexity", "desc": "Unnecessary complexity generates vulnerabilities. We design simple, predictable, and auditable systems." },
+        { "num": "03", "title": "Verifiable Security", "desc": "Every control must be testable. If you can't validate it, it doesn't exist." },
+        { "num": "04", "title": "Tooling over PowerPoint", "desc": "We prefer functional tools over presentations. Code doesn't lie; slides do." },
+        { "num": "05", "title": "Operational Realism", "desc": "Security must work under real conditions: pressure, fast changes, technical debt, and small teams." },
+        { "num": "06", "title": "Infrastructure as Discipline", "desc": "Infrastructure is part of security. CI/CD pipelines, network configuration, and secrets are attack vectors." }
+      ]
+    },
+    "vision": {
+      "label": "Vision",
+      "title": "The future of cybersecurity",
+      "paras": [
+        "We believe the future belongs to organizations capable of automating controls, reducing complexity, operating with real telemetry, and continuously validating their security posture.",
+        "Modern security should look more like systems engineering, observability, and operational automation — than static audits.",
+        "That is why we built Harden.Tools from UNIX engineering, open source software, terminals, and pragmatic tooling."
+      ]
+    },
+    "culture": {
+      "label": "Cultural Stack",
+      "items": ["Linux", "Python", "Infrastructure", "Protocols", "Observability", "Automation-first", "Offensive mindset", "Engineering discipline"]
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact — Harden.Tools",
+      "description": "Start a security engagement or ask about our services and Fortaleza platform."
+    },
+    "hero": {
+      "label": "Start an Engagement",
+      "title": "Connect with an Engineer",
+      "desc": "Every engagement starts with a technical conversation. No generic forms, no canned product sales."
+    },
+    "options": [
+      {
+        "id": "email",
+        "name": "Direct Email",
+        "desc": "Write to us directly. We respond within 24-48 business hours with an initial technical assessment.",
+        "cta": "hello@harden.tools"
+      },
+      {
+        "id": "schedule",
+        "name": "Schedule a Call",
+        "desc": "30-minute technical session to evaluate your context and define the engagement scope.",
+        "cta": "Schedule session"
+      },
+      {
+        "id": "fortaleza",
+        "name": "Try Fortaleza",
+        "desc": "Scan your domain right now. Results in 60 seconds, no credit card required.",
+        "cta": "Start free scan"
+      }
+    ],
+    "terminal_note": "$ echo 'We build security, not presentations.' | harden.tools --send",
+    "response_note": "Response in < 48h · No spam · Engineering only"
+  },
+  "footer": {
+    "tagline": "© 2025 Harden.Tools — Built for Operators",
+    "status": "Status: [SYSTEMS OPERATIONAL]",
+    "links": [
+      { "label": "Sitemap", "href": "/sitemap-index.xml" },
+      { "label": "Security.txt", "href": "/security.txt" },
+      { "label": "GitHub", "href": "https://github.com/marturojt" }
+    ]
+  }
+}

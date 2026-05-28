@@ -1,0 +1,58 @@
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #0a0a0a;
+    color: #e5e2e1;
+    font-family: Geist, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: theme('colors.primary');
+    color: theme('colors.on-primary');
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #262626;
+    border-radius: 10px;
+  }
+}
+
+@layer utilities {
+  .grid-pattern {
+    background-image: radial-gradient(#262626 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .grid-blueprint {
+    background-image: radial-gradient(#262626 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .glass-panel {
+    backdrop-filter: blur(20px);
+    background-color: rgba(26, 26, 26, 0.7);
+  }
+
+  .terminal-cursor::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+  }
+
+  .glow-green {
+    box-shadow: 0 0 20px rgba(107, 251, 154, 0.15);
+  }
+}

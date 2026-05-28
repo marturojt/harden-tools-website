@@ -1,0 +1,81 @@
+---
+import type { Locale } from '../i18n/utils';
+import { t } from '../i18n/utils';
+import SectionLabel from './SectionLabel.astro';
+import esData from '../i18n/es.json';
+import enData from '../i18n/en.json';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const data = locale === 'es' ? esData : enData;
+const items = data.home.services.items;
+---
+
+<section class="py-16 px-margin-mobile md:px-margin-desktop">
+  <div class="max-w-max-width mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-unit-8 gap-unit-4">
+      <div>
+        <SectionLabel text={t(locale, 'home.services.label')} />
+        <h2 class="font-headline-md text-headline-md">{t(locale, 'home.services.title')}</h2>
+      </div>
+      <div class="font-mono-code text-on-surface-variant text-sm border-l border-primary pl-unit-4">
+        {t(locale, 'home.services.command')}
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+      {
+        items.map((item) => (
+          <div class="relative overflow-hidden border border-outline-variant bg-surface-container-low group flex flex-col p-unit-8 min-h-[260px] hover:border-primary/50 transition-colors">
+            <h3 class="font-headline-sm text-headline-sm mb-unit-4">{item.name}</h3>
+            <p class="font-body-md text-on-surface-variant mb-auto">{item.desc}</p>
+            <div class="mt-4 pt-4 border-t border-outline-variant font-mono-label text-xs flex justify-between items-center">
+              <span class="text-on-surface-variant">{item.type}</span>
+              <span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform text-base">
+                {item.icon}
+              </span>
+            </div>
+          </div>
+        ))
+      }
+
+      <!-- AI-Assisted (wide card) -->
+      <div class="relative overflow-hidden border border-outline-variant bg-surface-container-low group flex flex-col md:flex-row p-unit-8 md:col-span-3 hover:border-primary/50 transition-colors">
+        <div class="flex-1 flex flex-col">
+          <h3 class="font-headline-sm text-headline-sm mb-unit-4">
+            {locale === 'es' ? 'Operaciones con IA' : 'AI-Assisted Security Ops'}
+          </h3>
+          <p class="font-body-md text-on-surface-variant mb-auto">
+            {
+              locale === 'es'
+                ? 'Aprovechamos LLMs para triage automatizado, análisis de logs y síntesis de inteligencia de amenazas en tu SOC.'
+                : 'Leveraging LLMs for automated triage, log analysis, and real-time threat intelligence synthesis within your SOC.'
+            }
+          </p>
+          <div class="mt-4 pt-4 border-t border-outline-variant font-mono-label text-xs flex justify-between items-center">
+            <span class="text-on-surface-variant">SERVICE_TYPE: INTELLIGENCE</span>
+            <span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform text-base">
+              neurology
+            </span>
+          </div>
+        </div>
+        <div class="flex-1 bg-background border border-outline-variant p-unit-4 font-mono-code text-xs text-on-surface-variant overflow-hidden mt-6 md:mt-0 md:ml-unit-8">
+          <div class="animate-pulse text-primary mb-2">
+            {locale === 'es' ? 'EJECUTANDO ANÁLISIS...' : 'RUNNING ANALYSIS...'}
+          </div>
+          <div class="opacity-60 space-y-1">
+            <div>&gt; Input: VPC_flow_logs_2024-10-21</div>
+            <div>&gt; Model: Harden-Claude-Sonnet</div>
+            <div>&gt; Status: {locale === 'es' ? 'Anomalía en 10.0.4.12' : 'Anomaly detected at 10.0.4.12'}</div>
+            <div>&gt; Action: {locale === 'es' ? 'Generando regla de aislamiento' : 'Generating isolation rule'}</div>
+            <div class="text-primary">
+              &gt; {locale === 'es' ? 'Política de Seguridad Actualizada.' : 'Security Policy Updated.'}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

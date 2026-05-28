@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PhilosophyGrid from '../components/PhilosophyGrid.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import StackBadges from '../components/StackBadges.astro';
+import MethodologySteps from '../components/MethodologySteps.astro';
+import FortalezaPreview from '../components/FortalezaPreview.astro';
+import CTASection from '../components/CTASection.astro';
+import TerminalBlock from '../components/TerminalBlock.astro';
+import { t, localePath } from '../i18n/utils';
+import { FORTALEZA_URL } from '../config/links';
+import esData from '../i18n/es.json';
+
+const locale = 'es' as const;
+const heroLines = esData.home.hero.terminal;
+---
+
+<BaseLayout
+  locale={locale}
+  title="Harden.Tools — Ingeniería de Seguridad para Infraestructura Real"
+  description="Firma de ingeniería de seguridad ofensiva y defensiva. Hardening automatizado, security tooling y validación continua para infraestructura moderna."
+  path="/"
+>
+  <!-- Hero -->
+  <section class="relative min-h-[90vh] flex flex-col justify-center px-margin-mobile md:px-margin-desktop pt-24 grid-pattern">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-background pointer-events-none"></div>
+    <div class="relative z-10 max-w-4xl">
+      <div class="inline-flex items-center gap-2 mb-unit-8 py-1 px-3 border border-outline-variant bg-surface-container-lowest">
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        <span class="font-mono-label text-xs uppercase tracking-widest text-on-surface-variant">
+          {t(locale, 'home.hero.status_badge')}
+        </span>
+      </div>
+
+      <h1 class="font-bold text-[48px] md:text-[72px] lg:text-[84px] leading-none mb-unit-8 tracking-tighter text-on-surface">
+        {t(locale, 'home.hero.title_part1')}
+        <span class="text-primary italic block">{t(locale, 'home.hero.title_highlight')}</span>
+      </h1>
+
+      <p class="font-body-lg text-on-surface-variant max-w-2xl mb-unit-8">
+        {t(locale, 'home.hero.description')}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-unit-4">
+        <a
+          href={FORTALEZA_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative px-unit-8 py-unit-4 bg-primary text-on-primary font-mono-label font-bold flex items-center justify-center overflow-hidden gap-2 hover:opacity-90 transition-opacity"
+        >
+          {t(locale, 'home.hero.cta_primary')}
+          <span class="material-symbols-outlined text-base">arrow_forward</span>
+        </a>
+        <a
+          href={localePath('/services', locale)}
+          class="px-unit-8 py-unit-4 border border-outline-variant text-on-surface font-mono-label hover:bg-surface-container transition-all flex items-center justify-center gap-2"
+        >
+          <span class="text-primary">&gt;</span>
+          {t(locale, 'home.hero.cta_secondary')}
+        </a>
+      </div>
+    </div>
+
+    <!-- Terminal sidebar -->
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-auto hidden xl:block opacity-40 pr-margin-desktop">
+      <TerminalBlock lines={heroLines} warnLine={3} />
+    </div>
+  </section>
+
+  <PhilosophyGrid locale={locale} />
+  <ServicesGrid locale={locale} />
+  <StackBadges locale={locale} />
+  <MethodologySteps locale={locale} />
+  <FortalezaPreview locale={locale} />
+  <CTASection locale={locale} />
+</BaseLayout>

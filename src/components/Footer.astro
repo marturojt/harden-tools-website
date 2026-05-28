@@ -1,0 +1,44 @@
+---
+import type { Locale } from '../i18n/utils';
+import { t, localePath } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const footerLinks = [
+  { label: 'Sitemap', href: '/sitemap-index.xml', external: false },
+  { label: 'Security.txt', href: '/security.txt', external: false },
+  { label: 'GitHub', href: 'https://github.com/marturojt', external: true },
+  { label: 'Fortaleza', href: 'https://fortaleza.digital', external: true },
+];
+---
+
+<footer
+  class="w-full px-margin-mobile md:px-margin-desktop py-unit-8 flex flex-col md:flex-row justify-between items-center gap-unit-4 bg-surface-container-lowest border-t border-outline-variant"
+>
+  <div class="flex flex-col gap-1 text-center md:text-left">
+    <span class="font-mono-label text-primary font-bold">Harden.Tools</span>
+    <span class="font-body-md text-on-surface-variant text-sm">{t(locale, 'footer.tagline')}</span>
+  </div>
+
+  <div class="flex flex-wrap gap-unit-4 md:gap-unit-6 justify-center items-center">
+    <a
+      href={localePath('/', locale)}
+      class="text-on-surface-variant font-mono-code text-xs hover:text-primary transition-colors animate-pulse"
+    >
+      {t(locale, 'footer.status')}
+    </a>
+    {
+      footerLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-on-surface-variant font-mono-code text-xs hover:text-primary transition-colors"
+          {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </div>
+</footer>

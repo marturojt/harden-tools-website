@@ -1,0 +1,5 @@
+Contact: mailto:hello@harden.tools
+Expires: 2027-01-01T00:00:00.000Z
+Preferred-Languages: es, en
+Canonical: https://harden.tools/.well-known/security.txt
+Policy: https://harden.tools/security-policy

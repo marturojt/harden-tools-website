@@ -1,0 +1,33 @@
+---
+import type { Locale } from '../i18n/utils';
+import { t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const stack = [
+  'LINUX', 'PYTHON', 'FASTAPI', 'NEXT.JS',
+  'POSTGRESQL', 'REDIS', 'AUTOMATION', 'AI/ML',
+];
+---
+
+<section class="py-12 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest border-y border-outline-variant">
+  <div class="max-w-max-width mx-auto">
+    <span class="font-mono-label text-primary uppercase tracking-[0.2em] mb-unit-8 block text-center">
+      {t(locale, 'home.stack.label')}
+    </span>
+    <div class="grid grid-cols-4 md:grid-cols-8 gap-unit-4">
+      {
+        stack.map((item) => (
+          <div class="flex items-center justify-center p-unit-4 border border-outline-variant hover:border-primary transition-colors group cursor-default">
+            <span class="font-mono-label text-xs text-on-surface-variant group-hover:text-primary transition-colors">
+              {item}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

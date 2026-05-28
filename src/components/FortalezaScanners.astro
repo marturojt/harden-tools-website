@@ -1,0 +1,48 @@
+---
+import type { Locale } from '../i18n/utils';
+import { t } from '../i18n/utils';
+import SectionLabel from './SectionLabel.astro';
+import esData from '../i18n/es.json';
+import enData from '../i18n/en.json';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const data = locale === 'es' ? esData : enData;
+const scanners = data.fortaleza.scanners.items;
+---
+
+<section class="py-16 px-margin-mobile md:px-margin-desktop border-t border-outline-variant">
+  <div class="max-w-max-width mx-auto">
+    <div class="text-center mb-unit-8">
+      <SectionLabel text={t(locale, 'fortaleza.scanners.label')} />
+      <h2 class="font-headline-md text-headline-md mb-unit-2">{t(locale, 'fortaleza.scanners.title')}</h2>
+      <p class="font-body-md text-on-surface-variant">{t(locale, 'fortaleza.scanners.subtitle')}</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-outline-variant border border-outline-variant">
+      {
+        scanners.map((scanner) => (
+          <div
+            class:list={[
+              'bg-background p-unit-6 hover:bg-surface-container-low transition-colors group',
+              (scanner as { highlight?: boolean }).highlight && 'border-t-2 border-secondary',
+            ]}
+          >
+            <span class="material-symbols-outlined text-primary mb-unit-4 block text-2xl">{scanner.icon}</span>
+            <h3 class="font-mono-label text-on-surface mb-unit-2 flex items-center gap-2">
+              {scanner.name}
+              {(scanner as { highlight?: boolean }).highlight && (
+                <span class="text-[9px] bg-secondary/20 text-secondary px-1 py-0.5 border border-secondary/30">
+                  #1
+                </span>
+              )}
+            </h3>
+            <p class="font-body-md text-xs text-on-surface-variant">{scanner.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import type { Locale } from '../i18n/utils';
+import { t, localePath } from '../i18n/utils';
+import { CALENDLY_URL } from '../config/links';
+
+interface Props {
+  locale: Locale;
+  title?: string;
+  terminalCmd?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const { locale } = Astro.props;
+const title = Astro.props.title ?? t(locale, 'home.cta.title');
+const terminalCmd = Astro.props.terminalCmd ?? t(locale, 'home.cta.terminal_cmd');
+const ctaLabel = Astro.props.ctaLabel ?? t(locale, 'home.cta.cta');
+const ctaHref = Astro.props.ctaHref ?? CALENDLY_URL;
+const isExternal = ctaHref.startsWith('http');
+---
+
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-primary text-on-primary">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="font-display-lg text-[40px] md:text-display-lg mb-unit-8 leading-none tracking-tighter">
+      {title}
+    </h2>
+    <div class="font-mono-code mb-unit-8 bg-black/10 py-unit-4 px-unit-8 inline-block">
+      {terminalCmd}
+    </div>
+    <div>
+      <a
+        href={ctaHref}
+        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        class="bg-on-primary text-primary font-mono-label font-bold px-unit-8 py-unit-4 hover:opacity-90 transition-opacity inline-block"
+      >
+        {ctaLabel}
+      </a>
+    </div>
+  </div>
+</section>
